@@ -5,10 +5,19 @@ import Tag from './Tag.vue';
 export default {
     data() {
         return {
-            ingredientes: ["Alho", "Orégano", "Manteiga"]
+            ingredientes: [] as String[]
         };
     },
-    components: { SelecionarIngredientes, Tag }
+    components: { SelecionarIngredientes, Tag },
+    methods: {
+      adicionarIngrediente(ingrediente: String){
+        this.ingredientes.push(ingrediente)
+      },
+      removerIngrediente(ingrediente: String){
+        this.ingredientes = this.ingredientes.filter(iLista => ingrediente !== iLista);
+        //essa linha de codigo esta criando um novo array ingredientes, em que verifica se ja nao existem o tal ingrediente o comparando com os elementos existentes no array.
+      }
+    }
 }
 </script>
 
@@ -30,7 +39,10 @@ export default {
                 Sua lista está vazia, selecione ingredientes para iniciar.
         </p>
     </section>
-    <SelecionarIngredientes/>
+    <SelecionarIngredientes
+      @adicionar-ingrediente="adicionarIngrediente($event)"
+       @remover-ingrediente="removerIngrediente($event)"
+    />
 </main>
 
 </template>

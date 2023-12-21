@@ -2,6 +2,7 @@
 import type ICategoria from '@/assets/interfaces/ICategoria';
 import type { PropType } from 'vue';
 import Tag from './Tag.vue';
+import IngredienteSelecionavel from './IngredienteSelecionavel.vue';
 
 export default {
     //propriedade passada entre componentes
@@ -9,7 +10,8 @@ export default {
         categoria: { type: Object as PropType<ICategoria>, required: true
         }
     },
-    components: { Tag }
+    components: { Tag, IngredienteSelecionavel },
+    emits: ['adicionarIngrediente', 'removerIngrediente']
 }
 </script>
 
@@ -22,7 +24,11 @@ export default {
         </header>
         <ul class="categoria__ingredientes">
             <li v-for="ingrediente in categoria.ingredientes" :key="ingrediente">
-            <Tag :texto="ingrediente" />
+            
+              <IngredienteSelecionavel 
+              @adicionar-ingrediente="$emit('adicionarIngrediente', $event)" :ingrediente="ingrediente"
+              @remover-ingrediente="$emit('removerIngrediente', $event)"/>
+              
             </li>
             
         </ul>
