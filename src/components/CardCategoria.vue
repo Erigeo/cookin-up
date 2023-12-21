@@ -22,7 +22,7 @@ export default {
         </header>
         <ul class="categoria__ingredientes">
             <li v-for="ingrediente in categoria.ingredientes" :key="ingrediente">
-            <Tag :texto="ingrediente"/>
+            <Tag :texto="ingrediente" />
             </li>
             
         </ul>

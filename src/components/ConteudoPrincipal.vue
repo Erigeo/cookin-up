@@ -21,9 +21,9 @@ export default {
         </span>
         <ul v-if="ingredientes.length" class="ingredientes-sua-lista">
             <li v-for="ingrediente in ingredientes " v-bind:key="ingrediente">
-                <Tag :texto="ingrediente"/>
-            </li>
-            
+                <Tag :texto="ingrediente" ativa/>
+            </li> 
+
         </ul>
         <p v-else class="paragrafo lista-vazia">
             <img src="../assets/imagens/icones/lista-vazia.svg" alt="Ícone de pesquisa">
