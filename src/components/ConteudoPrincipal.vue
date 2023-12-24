@@ -1,5 +1,6 @@
 <script lang="ts">
 import SelecionarIngredientes from './SelecionarIngredientes.vue';
+import SuaLista from './SuaLista.vue';
 import Tag from './Tag.vue';
 
 export default {
@@ -8,7 +9,7 @@ export default {
             ingredientes: [] as String[]
         };
     },
-    components: { SelecionarIngredientes, Tag },
+    components: { SelecionarIngredientes, Tag, SuaLista },
     methods: {
       adicionarIngrediente(ingrediente: String){
         this.ingredientes.push(ingrediente)
@@ -24,21 +25,7 @@ export default {
 
 <template>
 <main class="conteudo-principal">
-    <section>
-        <span class="subtitulo-lg sua-lista-texto"> 
-            Sua Lista:
-        </span>
-        <ul v-if="ingredientes.length" class="ingredientes-sua-lista">
-            <li v-for="ingrediente in ingredientes " v-bind:key="ingrediente">
-                <Tag :texto="ingrediente" ativa/>
-            </li> 
-
-        </ul>
-        <p v-else class="paragrafo lista-vazia">
-            <img src="../assets/imagens/icones/lista-vazia.svg" alt="Ícone de pesquisa">
-                Sua lista está vazia, selecione ingredientes para iniciar.
-        </p>
-    </section>
+  <SuaLista :ingredientes="ingredientes" />
     <SelecionarIngredientes
       @adicionar-ingrediente="adicionarIngrediente($event)"
        @remover-ingrediente="removerIngrediente($event)"
